@@ -18,12 +18,17 @@ from django.contrib import admin
 from django.urls import path
 # from django.conf import settings
 # from django.conf.urls.static import static
-from products.views import IndexView, ProductListView, ProductDetailView
+from products.views import IndexView, ProductListView, ProductDetailView, ContactView, Error404View, CartView, TestimonialView, CheckoutView
 from categories.views import CategoryDetailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", IndexView.as_view(), name="index"),
+    path("contact/", ContactView.as_view(), name="contact"),
+    path("cart/", CartView.as_view(), name="cart"),
+    path("checkout/", CheckoutView.as_view(), name="checkout"),
+    path("testimonial/", TestimonialView.as_view(), name="testimonial"),
+    path("404/", Error404View.as_view(), name="error-404"),
     path("products/", ProductListView.as_view(), name="products-list"),
     path("products/<int:pk>", ProductDetailView.as_view(), name="products-show"),
     path("categories/<slug:category>",

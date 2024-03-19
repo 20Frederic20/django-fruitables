@@ -12,6 +12,41 @@ class IndexView(View):
         return render(request, self.template_name)
 
 
+class ContactView(View):
+    template_name = "products/contact.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class CartView(View):
+    template_name = "products/cart.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class Error404View(View):
+    template_name = "products/404.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class CheckoutView(View):
+    template_name = "products/checkout.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
+class TestimonialView(View):
+    template_name = "products/testimonial.html"
+
+    def get(self, request, *args, **kwargs):
+        return render(request, self.template_name)
+
+
 class ProductListView(ListView):
     template_name = "products/list_product.html"
     context_object_name = 'products'  # Le nom de la variable passée au template

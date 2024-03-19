@@ -297,6 +297,46 @@
         "documentation": {}
     },
     {
+        "label": "ContactView",
+        "importPath": "products.views",
+        "description": "products.views",
+        "isExtraImport": true,
+        "detail": "products.views",
+        "documentation": {}
+    },
+    {
+        "label": "Error404View",
+        "importPath": "products.views",
+        "description": "products.views",
+        "isExtraImport": true,
+        "detail": "products.views",
+        "documentation": {}
+    },
+    {
+        "label": "CartView",
+        "importPath": "products.views",
+        "description": "products.views",
+        "isExtraImport": true,
+        "detail": "products.views",
+        "documentation": {}
+    },
+    {
+        "label": "TestimonialView",
+        "importPath": "products.views",
+        "description": "products.views",
+        "isExtraImport": true,
+        "detail": "products.views",
+        "documentation": {}
+    },
+    {
+        "label": "CheckoutView",
+        "importPath": "products.views",
+        "description": "products.views",
+        "isExtraImport": true,
+        "detail": "products.views",
+        "documentation": {}
+    },
+    {
         "label": "CategoryDetailView",
         "importPath": "categories.views",
         "description": "categories.views",
@@ -541,7 +581,7 @@
         "kind": 5,
         "importPath": "commerce.commerce.urls",
         "description": "commerce.commerce.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", IndexView.as_view(), name=\"index\"),\n    path(\"products/\", ProductListView.as_view(), name=\"products-list\"),\n    path(\"products/<int:pk>\", ProductDetailView.as_view(), name=\"products-show\"),\n    path(\"categories/<slug:category>\",\n         CategoryDetailView.as_view(), name=\"category-show\"),\n]\n# ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", IndexView.as_view(), name=\"index\"),\n    path(\"contact/\", ContactView.as_view(), name=\"contact\"),\n    path(\"cart/\", CartView.as_view(), name=\"cart\"),\n    path(\"checkout/\", CheckoutView.as_view(), name=\"checkout\"),\n    path(\"testimonial/\", TestimonialView.as_view(), name=\"testimonial\"),\n    path(\"404/\", Error404View.as_view(), name=\"error-404\"),\n    path(\"products/\", ProductListView.as_view(), name=\"products-list\"),\n    path(\"products/<int:pk>\", ProductDetailView.as_view(), name=\"products-show\"),",
         "detail": "commerce.commerce.urls",
         "documentation": {}
     },
@@ -622,7 +662,52 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class IndexView(View):\n    template_name = \"products/index.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'  # Le nom de la variable passée au template\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()",
+        "peekOfCode": "class IndexView(View):\n    template_name = \"products/index.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass ContactView(View):\n    template_name = \"products/contact.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass CartView(View):\n    template_name = \"products/cart.html\"",
+        "detail": "commerce.products.views",
+        "documentation": {}
+    },
+    {
+        "label": "ContactView",
+        "kind": 6,
+        "importPath": "commerce.products.views",
+        "description": "commerce.products.views",
+        "peekOfCode": "class ContactView(View):\n    template_name = \"products/contact.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass CartView(View):\n    template_name = \"products/cart.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass Error404View(View):\n    template_name = \"products/404.html\"",
+        "detail": "commerce.products.views",
+        "documentation": {}
+    },
+    {
+        "label": "CartView",
+        "kind": 6,
+        "importPath": "commerce.products.views",
+        "description": "commerce.products.views",
+        "peekOfCode": "class CartView(View):\n    template_name = \"products/cart.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass Error404View(View):\n    template_name = \"products/404.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass CheckoutView(View):\n    template_name = \"products/checkout.html\"",
+        "detail": "commerce.products.views",
+        "documentation": {}
+    },
+    {
+        "label": "Error404View",
+        "kind": 6,
+        "importPath": "commerce.products.views",
+        "description": "commerce.products.views",
+        "peekOfCode": "class Error404View(View):\n    template_name = \"products/404.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass CheckoutView(View):\n    template_name = \"products/checkout.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass TestimonialView(View):\n    template_name = \"products/testimonial.html\"",
+        "detail": "commerce.products.views",
+        "documentation": {}
+    },
+    {
+        "label": "CheckoutView",
+        "kind": 6,
+        "importPath": "commerce.products.views",
+        "description": "commerce.products.views",
+        "peekOfCode": "class CheckoutView(View):\n    template_name = \"products/checkout.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass TestimonialView(View):\n    template_name = \"products/testimonial.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass ProductListView(ListView):\n    template_name = \"products/list_product.html\"",
+        "detail": "commerce.products.views",
+        "documentation": {}
+    },
+    {
+        "label": "TestimonialView",
+        "kind": 6,
+        "importPath": "commerce.products.views",
+        "description": "commerce.products.views",
+        "peekOfCode": "class TestimonialView(View):\n    template_name = \"products/testimonial.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'  # Le nom de la variable passée au template\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()",
         "detail": "commerce.products.views",
         "documentation": {}
     },

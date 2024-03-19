@@ -11,6 +11,10 @@ __pycache__/
 
 # Ignore static files
 /static/
+commerce/static/
 
 # Ignore media files
 /media/
+
+# Ignore package dependencies
+.vscode/
