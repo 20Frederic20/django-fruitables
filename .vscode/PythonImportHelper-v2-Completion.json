@@ -128,6 +128,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -631,6 +647,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "commerce.products.migrations.0005_alter_product_type",
+        "description": "commerce.products.migrations.0005_alter_product_type",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('products', '0004_alter_product_options'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='product',\n            name='type',\n            field=models.CharField(blank=True, choices=[('OR', 'Organic'), ('FR', 'Fresh'), ('SA', 'Sales'), ('Di', 'Discount'), ('Ex', 'Expired'), ('Ot', 'Other'), ('Un', 'Unknown')], max_length=255, null=True),\n        ),",
+        "detail": "commerce.products.migrations.0005_alter_product_type",
+        "documentation": {}
+    },
+    {
         "label": "ProductsConfig",
         "kind": 6,
         "importPath": "commerce.products.apps",
@@ -653,7 +678,7 @@
         "kind": 6,
         "importPath": "commerce.products.models",
         "description": "commerce.products.models",
-        "peekOfCode": "class Product(models.Model):\n    name = models.CharField(max_length=255)\n    price = models.FloatField(max_length=10, null=True, blank=True)\n    description = models.TextField(blank=True, null=True)\n    image = models.ImageField(upload_to=\"tmp/\", blank=True, null=True)\n    type = models.CharField(max_length=255, blank=True, null=True)\n    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)\n    def __str__(self):\n        return self.name\n    class Meta:",
+        "peekOfCode": "class Product(models.Model):\n    class TypeProduct(models.TextChoices):\n     # Actual value ↓      # ↓ Displayed on Django Admin\n        ORGANIC = 'OR', 'Organic'\n        FRESH = 'FR', 'Fresh'\n        SALES = 'SA', 'Sales'\n        DISCOUNT = 'Di', 'Discount'\n        EXPIRED = 'Ex', 'Expired'\n        OTHER = 'Ot', 'Other'\n        UNKNOWN = 'Un', 'Unknown'",
         "detail": "commerce.products.models",
         "documentation": {}
     },

@@ -21,11 +21,22 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    class TypeProduct(models.TextChoices):
+     # Actual value ↓      # ↓ Displayed on Django Admin
+        ORGANIC = 'OR', 'Organic'
+        FRESH = 'FR', 'Fresh'
+        SALES = 'SA', 'Sales'
+        DISCOUNT = 'Di', 'Discount'
+        EXPIRED = 'Ex', 'Expired'
+        OTHER = 'Ot', 'Other'
+        UNKNOWN = 'Un', 'Unknown'
+
     name = models.CharField(max_length=255)
     price = models.FloatField(max_length=10, null=True, blank=True)
     description = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to="tmp/", blank=True, null=True)
-    type = models.CharField(max_length=255, blank=True, null=True)
+    type = models.CharField(
+        max_length=255, choices=TypeProduct, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
 
     def __str__(self):

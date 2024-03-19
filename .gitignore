@@ -4,6 +4,7 @@ venv/
 # Ignore compiled Python files
 __pycache__/
 *.pyc
+migrations/
 
 # Ignore log files
 *.log
@@ -11,10 +12,12 @@ __pycache__/
 
 # Ignore static files
 /static/
-commerce/static/
+/commerce/static/
 
 # Ignore media files
 /media/
+/tmp/
+/commerce/tmp/
 
 # Ignore package dependencies
 .vscode/
