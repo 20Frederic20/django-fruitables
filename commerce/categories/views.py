@@ -18,7 +18,13 @@ class CategoryDetailView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Ajouter la catégorie au contexte pour l'utiliser dans le template
-        category = self.kwargs['category']
-        context['category_selected'] = Category.objects.get(slug=category)
-        context['categories'] = Category.objects.all()
+        slug = self.kwargs['category']
+        categories = Category.objects.all()
+        categories_with_count = []
+        for category in categories:
+            product_count = Product.objects.filter(category=category).count()
+            categories_with_count.append((category, product_count))
+
+        context['category_selected'] = Category.objects.get(slug=slug)
+        context['categories_with_count'] = categories_with_count
         return context
