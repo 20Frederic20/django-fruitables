@@ -597,7 +597,7 @@
         "kind": 5,
         "importPath": "commerce.commerce.urls",
         "description": "commerce.commerce.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", IndexView.as_view(), name=\"index\"),\n    path(\"contact/\", ContactView.as_view(), name=\"contact\"),\n    path(\"cart/\", CartView.as_view(), name=\"cart\"),\n    path(\"checkout/\", CheckoutView.as_view(), name=\"checkout\"),\n    path(\"testimonial/\", TestimonialView.as_view(), name=\"testimonial\"),\n    path(\"404/\", Error404View.as_view(), name=\"error-404\"),\n    path(\"products/\", ProductListView.as_view(), name=\"products-list\"),\n    path(\"products/<int:pk>\", ProductDetailView.as_view(), name=\"products-show\"),",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", IndexView.as_view(), name=\"index\"),\n    path(\"<slug:category>\", IndexView.as_view(), name=\"index\"),\n    path(\"contact/\", ContactView.as_view(), name=\"contact\"),\n    path(\"cart/\", CartView.as_view(), name=\"cart\"),\n    path(\"checkout/\", CheckoutView.as_view(), name=\"checkout\"),\n    path(\"testimonial/\", TestimonialView.as_view(), name=\"testimonial\"),\n    path(\"404/\", Error404View.as_view(), name=\"error-404\"),\n    path(\"products/\", ProductListView.as_view(), name=\"products-list\"),",
         "detail": "commerce.commerce.urls",
         "documentation": {}
     },
@@ -687,7 +687,7 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class IndexView(View):\n    template_name = \"products/index.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass ContactView(View):\n    template_name = \"products/contact.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass CartView(View):\n    template_name = \"products/cart.html\"",
+        "peekOfCode": "class IndexView(View):\n    template_name = \"products/index.html\"\n    context_object_name = 'products'\n    def get(self, request, *args, **kwargs):\n        products = Product.objects.all()\n        categories = Category.objects.order_by('name')[:4]\n        slug = request.GET.get('category')\n        if slug:\n            products = products.filter(category__slug=slug)\n        context = {\"categories\": categories, \"products\": products[:12]}",
         "detail": "commerce.products.views",
         "documentation": {}
     },

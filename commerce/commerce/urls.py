@@ -24,6 +24,7 @@ from categories.views import CategoryDetailView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", IndexView.as_view(), name="index"),
+    path("<slug:category>", IndexView.as_view(), name="index"),
     path("contact/", ContactView.as_view(), name="contact"),
     path("cart/", CartView.as_view(), name="cart"),
     path("checkout/", CheckoutView.as_view(), name="checkout"),

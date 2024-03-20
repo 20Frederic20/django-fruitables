@@ -7,9 +7,16 @@ from .models import Category, Product
 
 class IndexView(View):
     template_name = "products/index.html"
+    context_object_name = 'products'
 
     def get(self, request, *args, **kwargs):
-        return render(request, self.template_name)
+        products = Product.objects.all()
+        categories = Category.objects.order_by('name')[:4]
+        slug = request.GET.get('category')
+        if slug:
+            products = products.filter(category__slug=slug)
+        context = {"categories": categories, "products": products[:12]}
+        return render(request, self.template_name, context)
 
 
 class ContactView(View):
