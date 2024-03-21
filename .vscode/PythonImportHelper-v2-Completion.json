@@ -200,6 +200,14 @@
         "documentation": {}
     },
     {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "View",
         "importPath": "django.views",
         "description": "django.views",
@@ -383,6 +391,14 @@
         "description": "django.template.defaultfilters",
         "isExtraImport": true,
         "detail": "django.template.defaultfilters",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "importPath": "products.cart",
+        "description": "products.cart",
+        "isExtraImport": true,
+        "detail": "products.cart",
         "documentation": {}
     },
     {
@@ -665,6 +681,24 @@
         "documentation": {}
     },
     {
+        "label": "Cart",
+        "kind": 6,
+        "importPath": "commerce.products.cart",
+        "description": "commerce.products.cart",
+        "peekOfCode": "class Cart():\n    def __init__(self, request):\n        self.session = request.session\n        cart = self.session.get('session-key')\n        if 'session-key' not in self.session:\n            cart = self.session['session-key'] = {}\n        self.cart = cart",
+        "detail": "commerce.products.cart",
+        "documentation": {}
+    },
+    {
+        "label": "cart",
+        "kind": 2,
+        "importPath": "commerce.products.context_processors",
+        "description": "commerce.products.context_processors",
+        "peekOfCode": "def cart(request):\n    return {'cart': Cart(request)}",
+        "detail": "commerce.products.context_processors",
+        "documentation": {}
+    },
+    {
         "label": "Category",
         "kind": 6,
         "importPath": "commerce.products.models",
@@ -678,7 +712,7 @@
         "kind": 6,
         "importPath": "commerce.products.models",
         "description": "commerce.products.models",
-        "peekOfCode": "class Product(models.Model):\n    class TypeProduct(models.TextChoices):\n     # Actual value ↓      # ↓ Displayed on Django Admin\n        ORGANIC = 'OR', 'Organic'\n        FRESH = 'FR', 'Fresh'\n        SALES = 'SA', 'Sales'\n        DISCOUNT = 'Di', 'Discount'\n        EXPIRED = 'Ex', 'Expired'\n        OTHER = 'Ot', 'Other'\n        UNKNOWN = 'Un', 'Unknown'",
+        "peekOfCode": "class Product(models.Model):\n    class TypeProduct(models.TextChoices):\n     # Actual value ↓      # ↓ Displayed on Django Admin\n        ORGANIC = 'Or', 'Organic'\n        FRESH = 'Fa', 'Fresh'\n        SALES = 'Sa', 'Sales'\n        DISCOUNT = 'Di', 'Discount'\n        EXPIRED = 'Ex', 'Expired'\n        OTHER = 'Ot', 'Other'\n        UNKNOWN = 'Un', 'Unknown'",
         "detail": "commerce.products.models",
         "documentation": {}
     },
@@ -696,7 +730,7 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class ContactView(View):\n    template_name = \"products/contact.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass CartView(View):\n    template_name = \"products/cart.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass Error404View(View):\n    template_name = \"products/404.html\"",
+        "peekOfCode": "class ContactView(View):\n    template_name = \"products/contact.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass CartView(View):\n    template_name = \"products/cart.html\"\n    def get(self, request, *args, **kwargs):\n        cart = Cart(request)\n        return render(request, self.template_name)\n    def post(self, request, *args, **kwargs):",
         "detail": "commerce.products.views",
         "documentation": {}
     },
@@ -705,7 +739,7 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class CartView(View):\n    template_name = \"products/cart.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass Error404View(View):\n    template_name = \"products/404.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass CheckoutView(View):\n    template_name = \"products/checkout.html\"",
+        "peekOfCode": "class CartView(View):\n    template_name = \"products/cart.html\"\n    def get(self, request, *args, **kwargs):\n        cart = Cart(request)\n        return render(request, self.template_name)\n    def post(self, request, *args, **kwargs):\n        cart = Cart(request)\n        product_id = request.POST.get('product_id')\n        product = get_object_or_404(Product, pk=product_id)\n        cart.add(product=product)",
         "detail": "commerce.products.views",
         "documentation": {}
     },
@@ -732,7 +766,7 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class TestimonialView(View):\n    template_name = \"products/testimonial.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'  # Le nom de la variable passée au template\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()",
+        "peekOfCode": "class TestimonialView(View):\n    template_name = \"products/testimonial.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'  # Le nom de la variable passée au template\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()[:9]",
         "detail": "commerce.products.views",
         "documentation": {}
     },
@@ -741,7 +775,7 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'  # Le nom de la variable passée au template\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        # Ajouter la liste de catégories au contexte\n        context['categories'] = Category.objects.all()",
+        "peekOfCode": "class ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'  # Le nom de la variable passée au template\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()[:9]\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        # Ajouter la liste de catégories au contexte\n        context['categories'] = Category.objects.all()",
         "detail": "commerce.products.views",
         "documentation": {}
     },

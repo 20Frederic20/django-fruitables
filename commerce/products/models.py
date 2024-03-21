@@ -23,9 +23,9 @@ class Category(models.Model):
 class Product(models.Model):
     class TypeProduct(models.TextChoices):
      # Actual value ↓      # ↓ Displayed on Django Admin
-        ORGANIC = 'OR', 'Organic'
-        FRESH = 'FR', 'Fresh'
-        SALES = 'SA', 'Sales'
+        ORGANIC = 'Or', 'Organic'
+        FRESH = 'Fa', 'Fresh'
+        SALES = 'Sa', 'Sales'
         DISCOUNT = 'Di', 'Discount'
         EXPIRED = 'Ex', 'Expired'
         OTHER = 'Ot', 'Other'

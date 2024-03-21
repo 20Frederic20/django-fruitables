@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
+from django.http import JsonResponse
+from products.cart import Cart
 from django.views.generic import ListView, DetailView
 from .models import Category, Product
 # Create your views here.
@@ -30,7 +32,19 @@ class CartView(View):
     template_name = "products/cart.html"
 
     def get(self, request, *args, **kwargs):
+        cart = Cart(request)
         return render(request, self.template_name)
+
+    def post(self, request, *args, **kwargs):
+        cart = Cart(request)
+        product_id = request.POST.get('product_id')
+        product = get_object_or_404(Product, pk=product_id)
+        cart_quantity = cart.__len__()
+        name = cart.cart[str(product_id)]['name']
+        cart.add(product=product)
+        new_price = cart.cart[str(product_id)]['price']
+        priceHT = cart.setPriceHT()
+        return JsonResponse({'name': name, "quantity": cart_quantity, 'price': new_price, 'priceHT': priceHT})
 
 
 class Error404View(View):
@@ -60,12 +74,14 @@ class ProductListView(ListView):
 
     def get_queryset(self):
         # Récupérer tous les produits
-        return Product.objects.all()
+        return Product.objects.all()[:9]
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         # Ajouter la liste de catégories au contexte
         context['categories'] = Category.objects.all()
+        context['product_types'] = [(choice[0], choice[1])
+                                    for choice in Product.TypeProduct.choices]
         return context
 
 
