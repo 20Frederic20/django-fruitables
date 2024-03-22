@@ -15,11 +15,11 @@ class Cart():
     def add(self, product):
         product_id = str(product.id)
         if product_id in self.cart:
-            self.cart[product_id]['price'] += product.price
-            # self.cart[product_id]['name'] = product.name
+            self.cart[product_id]['total'] += product.price
+            self.cart[product_id]['quantity'] += 1
         else:
             self.cart[product_id] = {
-                'price': product.price, 'name': product.name}
+                'price': product.price, 'name': product.name, 'total': product.price, 'quantity': 1}
 
         self.session.modified = True
 
@@ -29,5 +29,5 @@ class Cart():
     def setPriceHT(self):
         priceHT = 0
         for product_id in self.cart:
-            priceHT += self.cart[product_id]['price']
+            priceHT += self.cart[product_id]['total']
         return priceHT

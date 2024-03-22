@@ -162,7 +162,7 @@
             },
             success: function (response) {
                 console.log(response);
-                $('#cart_quantity').text(response.quantity);
+                $('#cart_quantity').text(response.cart_quantity);
             },
         });
     });

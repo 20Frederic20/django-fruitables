@@ -32,19 +32,23 @@ class CartView(View):
     template_name = "products/cart.html"
 
     def get(self, request, *args, **kwargs):
-        cart = Cart(request)
-        return render(request, self.template_name)
+        cart = request.session.get('session-key')
+        products = []
+        for product_id, product_data in cart.items():
+            products.append(product_data)
+        return render(request, self.template_name, context={'products': products})
 
     def post(self, request, *args, **kwargs):
         cart = Cart(request)
         product_id = request.POST.get('product_id')
         product = get_object_or_404(Product, pk=product_id)
+        cart.add(product=product)
         cart_quantity = cart.__len__()
         name = cart.cart[str(product_id)]['name']
-        cart.add(product=product)
-        new_price = cart.cart[str(product_id)]['price']
+        new_price = cart.cart[str(product_id)]['total']
+        quantity = cart.cart[str(product_id)]['quantity']
         priceHT = cart.setPriceHT()
-        return JsonResponse({'name': name, "quantity": cart_quantity, 'price': new_price, 'priceHT': priceHT})
+        return JsonResponse({'name': name, "cart_quantity": cart_quantity, "quantity": quantity, 'price': new_price, 'priceHT': priceHT})
 
 
 class Error404View(View):
