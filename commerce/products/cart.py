@@ -5,7 +5,7 @@ class Cart():
     def __init__(self, request):
         self.session = request.session
 
-        cart = self.session.get('session-key')
+        cart = self.session.get('session-key', {})
 
         if 'session-key' not in self.session:
             cart = self.session['session-key'] = {}
@@ -21,6 +21,14 @@ class Cart():
             self.cart[product_id] = {
                 'price': product.price, 'name': product.name, 'total': product.price, 'quantity': 1}
 
+        self.session.modified = True
+
+    def remove(self, product):
+        product_id = str(product.id)
+        if product_id in self.cart:
+            del self.cart[product_id]
+        else:
+            pass
         self.session.modified = True
 
     def __len__(self):

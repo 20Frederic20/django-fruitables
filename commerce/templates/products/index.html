@@ -121,7 +121,7 @@
                         </li>
                         {% for category in categories %}
                         <li class="nav-item">
-                            <a href="{% url 'index'%}?category={{category.slug}}" class="d-flex py-2 m-2 bg-light rounded-pill">
+                            <a class="d-flex py-2 m-2 bg-light rounded-pill category-link" data-category-slug="{{category.slug}}">
                                 <span class="text-dark" style="width: 130px;">{{ category.name }}</span>
                             </a>
                         </li>

@@ -127,6 +127,12 @@
         $('#videoModal').on('hide.bs.modal', function (e) {
             $("#video").attr('src', $videoSrc);
         })
+
+        if (document.querySelector('meta[http-equiv="X-Translated-To"]')) {
+            var translatedTo = document.querySelector('meta[http-equiv="X-Translated-To"]').getAttribute('content');
+            console.log("Translated to: " + translatedTo);
+            document.body.classList.add("translatedTo" + translatedTo);
+        }
     });
 
 
@@ -166,6 +172,48 @@
             },
         });
     });
+
+    $('.remove-from-cart').on('click', function (e) {
+        e.preventDefault()
+
+        console.log("#product-" + $(this).data('id'))
+
+        $.ajax({
+            type: "DELETE",
+            url: window.url,
+            data: {
+                'product_id': $(this).data('id'),
+                'csrfmiddlewaretoken': window.csrfToken,
+            },
+            beforeSend: function (xhr, settings) {
+                xhr.setRequestHeader("X-CSRFToken", window.csrfToken);
+            },
+            success: function (response) {
+                if (response.status === 204) {
+                    $(this).closest('tr').addClass('d-none');
+                }
+            },
+        });
+    });
+
+    // $('.category-link').click(function (e) {
+    //     e.preventDefault();
+    //     let url = "/"
+    //     let categorySlug = $(this).data('category-slug')
+    //     url = url + "?category=" + categorySlug
+    //     $.ajax({
+    //         url: url,
+    //         type: "GET",
+    //         data: {},
+    //         success: function (data) {
+    //             $('.product-list').html(data);
+    //             console.log(data);
+    //         },
+    //         error: function (xhr, status, error) {
+    //             console.log(error);
+    //         }
+    //     });
+    // });
 
 })(jQuery);
 

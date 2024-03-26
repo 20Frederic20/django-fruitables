@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
 from django.http import JsonResponse
 from products.cart import Cart
 from django.views.generic import ListView, DetailView
 from .models import Category, Product
+from django.http import QueryDict
 # Create your views here.
 
 
@@ -49,6 +50,22 @@ class CartView(View):
         quantity = cart.cart[str(product_id)]['quantity']
         priceHT = cart.setPriceHT()
         return JsonResponse({'name': name, "cart_quantity": cart_quantity, "quantity": quantity, 'price': new_price, 'priceHT': priceHT})
+
+    def delete(self, request, *args, **kwargs):
+        # product_name = request.DELETE.get('product_id')
+        delete_queryset = QueryDict(request.body)
+        product_name = delete_queryset.get('product_id')
+
+        print(product_name)
+        cart = request.session.get('session-key')
+        mycart = Cart(request)
+        product = Product.objects.filter(name=product_name).first()
+        print(product)
+        productId = str(product.id)
+        for product_id, product_data in cart.items():
+            if productId == product_id:
+                mycart.remove(product)
+        return redirect('cart')
 
 
 class Error404View(View):
