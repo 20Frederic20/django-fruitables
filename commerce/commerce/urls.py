@@ -16,8 +16,8 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-# from django.conf import settings
-# from django.conf.urls.static import static
+from django.conf import settings
+from django.conf.urls.static import static
 from products.views import IndexView, ProductListView, ProductDetailView, ContactView, Error404View, CartView, TestimonialView, CheckoutView
 from categories.views import CategoryDetailView
 
@@ -35,5 +35,6 @@ urlpatterns = [
     path("categories/<slug:category>",
          CategoryDetailView.as_view(), name="category-show"),
     path("__debug__/", include("debug_toolbar.urls")),
-]
-# ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    # ]
+] + (static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))
+# (static(settings.STATIC_URL, document_root=settings.STATIC_ROOT))
