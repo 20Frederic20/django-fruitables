@@ -196,6 +196,29 @@
         });
     });
 
+    // $('#input-search').on('click', function (e) {
+    //     e.preventDefault()
+
+    //     console.log("#product")
+
+    //     $.ajax({
+    //         type: "POST",
+    //         url: "search/",
+    //         data: {
+    //             'search': $("#search").val(),
+    //             'csrfmiddlewaretoken': window.csrfToken,
+    //         },
+    //         beforeSend: function (xhr, settings) {
+    //             xhr.setRequestHeader("X-CSRFToken", window.csrfToken);
+    //         },
+    //         success: function (response) {
+    //             if (response) {
+    //                 console.log(response)
+    //             }
+    //         },
+    //     });
+    // });
+
     // $('.category-link').click(function (e) {
     //     e.preventDefault();
     //     let url = "/"

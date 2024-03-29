@@ -168,6 +168,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -232,6 +248,14 @@
         "documentation": {}
     },
     {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -253,6 +277,30 @@
         "description": "django.shortcuts",
         "isExtraImport": true,
         "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Any",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
         "documentation": {}
     },
     {
@@ -425,6 +473,30 @@
         "documentation": {}
     },
     {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
         "label": "IndexView",
         "importPath": "products.views",
         "description": "products.views",
@@ -489,6 +561,14 @@
         "documentation": {}
     },
     {
+        "label": "SearchProductView",
+        "importPath": "products.views",
+        "description": "products.views",
+        "isExtraImport": true,
+        "detail": "products.views",
+        "documentation": {}
+    },
+    {
         "label": "CategoryDetailView",
         "importPath": "categories.views",
         "description": "categories.views",
@@ -511,14 +591,6 @@
         "importPath": "django.db.models.deletion",
         "description": "django.db.models.deletion",
         "detail": "django.db.models.deletion",
-        "documentation": {}
-    },
-    {
-        "label": "Any",
-        "importPath": "typing",
-        "description": "typing",
-        "isExtraImport": true,
-        "detail": "typing",
         "documentation": {}
     },
     {
@@ -554,6 +626,15 @@
         "description": "commerce.carts.apps",
         "peekOfCode": "class CartsConfig(AppConfig):\n    default_auto_field = 'django.db.models.BigAutoField'\n    name = 'carts'",
         "detail": "commerce.carts.apps",
+        "documentation": {}
+    },
+    {
+        "label": "Cart",
+        "kind": 6,
+        "importPath": "commerce.carts.cart",
+        "description": "commerce.carts.cart",
+        "peekOfCode": "class Cart():\n    def __init__(self, request):\n        self.session = request.session\n        cart = self.session.get('session-key', {})\n        if 'session-key' not in self.session:\n            cart = self.session['session-key'] = {}\n        self.cart = cart\n    def add(self, product):\n        product_id = str(product.id)\n        if product_id in self.cart:",
+        "detail": "commerce.carts.cart",
         "documentation": {}
     },
     {
@@ -705,7 +786,7 @@
         "kind": 5,
         "importPath": "commerce.commerce.settings",
         "description": "commerce.commerce.settings",
-        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]",
+        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",",
         "detail": "commerce.commerce.settings",
         "documentation": {}
     },
@@ -714,7 +795,7 @@
         "kind": 5,
         "importPath": "commerce.commerce.settings",
         "description": "commerce.commerce.settings",
-        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\n# Default primary key field type",
+        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]",
         "detail": "commerce.commerce.settings",
         "documentation": {}
     },
@@ -723,7 +804,7 @@
         "kind": 5,
         "importPath": "commerce.commerce.settings",
         "description": "commerce.commerce.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field",
+        "peekOfCode": "USE_I18N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')",
         "detail": "commerce.commerce.settings",
         "documentation": {}
     },
@@ -732,7 +813,7 @@
         "kind": 5,
         "importPath": "commerce.commerce.settings",
         "description": "commerce.commerce.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/4.1/howto/static-files/\nSTATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type",
         "detail": "commerce.commerce.settings",
         "documentation": {}
     },
@@ -741,7 +822,16 @@
         "kind": 5,
         "importPath": "commerce.commerce.settings",
         "description": "commerce.commerce.settings",
-        "peekOfCode": "STATIC_URL = 'static/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATIC_URL = 'static/'\nMEDIA_URL = '/media/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "commerce.commerce.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "commerce.commerce.settings",
+        "description": "commerce.commerce.settings",
+        "peekOfCode": "MEDIA_URL = '/media/'\nSTATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
         "detail": "commerce.commerce.settings",
         "documentation": {}
     },
@@ -750,7 +840,16 @@
         "kind": 5,
         "importPath": "commerce.commerce.settings",
         "description": "commerce.commerce.settings",
-        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "peekOfCode": "STATICFILES_DIRS = [\n    BASE_DIR / \"static\",\n]\nMEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
+        "detail": "commerce.commerce.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "kind": 5,
+        "importPath": "commerce.commerce.settings",
+        "description": "commerce.commerce.settings",
+        "peekOfCode": "MEDIA_ROOT = os.path.join(BASE_DIR, 'media')\n# Default primary key field type\n# https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'",
         "detail": "commerce.commerce.settings",
         "documentation": {}
     },
@@ -768,7 +867,7 @@
         "kind": 5,
         "importPath": "commerce.commerce.urls",
         "description": "commerce.commerce.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", IndexView.as_view(), name=\"index\"),\n    path(\"<slug:category>\", IndexView.as_view(), name=\"index\"),\n    path(\"contact/\", ContactView.as_view(), name=\"contact\"),\n    path(\"cart/\", CartView.as_view(), name=\"cart\"),\n    path(\"checkout/\", CheckoutView.as_view(), name=\"checkout\"),\n    path(\"testimonial/\", TestimonialView.as_view(), name=\"testimonial\"),\n    path(\"404/\", Error404View.as_view(), name=\"error-404\"),\n    path(\"products/\", ProductListView.as_view(), name=\"products-list\"),",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path(\"\", IndexView.as_view(), name=\"index\"),\n    path(\"<slug:category>\", IndexView.as_view(), name=\"index\"),\n    path(\"contact/\", ContactView.as_view(), name=\"contact\"),\n    path(\"search/\", SearchProductView.as_view(), name=\"search\"),\n    path(\"cart/\", CartView.as_view(), name=\"cart\"),\n    path(\"checkout/\", CheckoutView.as_view(), name=\"checkout\"),\n    path(\"testimonial/\", TestimonialView.as_view(), name=\"testimonial\"),\n    path(\"404/\", Error404View.as_view(), name=\"error-404\"),",
         "detail": "commerce.commerce.urls",
         "documentation": {}
     },
@@ -827,6 +926,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "commerce.products.migrations.0006_alter_product_type",
+        "description": "commerce.products.migrations.0006_alter_product_type",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('products', '0005_alter_product_type'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='product',\n            name='type',\n            field=models.CharField(blank=True, choices=[('Or', 'Organic'), ('Fa', 'Fresh'), ('Sa', 'Sales'), ('Di', 'Discount'), ('Ex', 'Expired'), ('Ot', 'Other'), ('Un', 'Unknown')], max_length=255, null=True),\n        ),",
+        "detail": "commerce.products.migrations.0006_alter_product_type",
+        "documentation": {}
+    },
+    {
         "label": "ProductsConfig",
         "kind": 6,
         "importPath": "commerce.products.apps",
@@ -840,7 +948,7 @@
         "kind": 6,
         "importPath": "commerce.products.cart",
         "description": "commerce.products.cart",
-        "peekOfCode": "class Cart():\n    def __init__(self, request):\n        self.session = request.session\n        cart = self.session.get('session-key')\n        if 'session-key' not in self.session:\n            cart = self.session['session-key'] = {}\n        self.cart = cart\n    def add(self, product):\n        product_id = str(product.id)\n        if product_id in self.cart:",
+        "peekOfCode": "class Cart():\n    def __init__(self, request):\n        self.session = request.session\n        cart = self.session.get('session-key', {})\n        if 'session-key' not in self.session:\n            cart = self.session['session-key'] = {}\n        self.cart = cart\n    def add(self, product):\n        product_id = str(product.id)\n        if product_id in self.cart:",
         "detail": "commerce.products.cart",
         "documentation": {}
     },
@@ -876,7 +984,7 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class IndexView(View):\n    template_name = \"products/index.html\"\n    context_object_name = 'products'\n    def get(self, request, *args, **kwargs):\n        products = Product.objects.all()\n        categories = Category.objects.order_by('name')[:4]\n        slug = request.GET.get('category')\n        if slug:\n            products = products.filter(category__slug=slug)\n        context = {\"categories\": categories, \"products\": products[:12]}",
+        "peekOfCode": "class IndexView(View):\n    template_name = \"products/index.html\"\n    context_object_name = 'products'\n    def get(self, request, *args, **kwargs):\n        products = Product.objects.order_by('-pk')\n        categories = Category.objects.order_by('name')[:4]\n        slug = request.GET.get('category')\n        if slug:\n            products = products.filter(category__slug=slug)\n        context = {\"categories\": categories, \"products\": products[:12]}",
         "detail": "commerce.products.views",
         "documentation": {}
     },
@@ -894,7 +1002,7 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class CartView(View):\n    template_name = \"products/cart.html\"\n    def get(self, request, *args, **kwargs):\n        cart = request.session.get('session-key')\n        products = []\n        for product_id, product_data in cart.items():\n            products.append(product_data)\n        return render(request, self.template_name, context={'products': products})\n    def post(self, request, *args, **kwargs):\n        cart = Cart(request)",
+        "peekOfCode": "class CartView(View):\n    template_name = \"products/cart.html\"\n    def get(self, request, *args, **kwargs):\n        cart = request.session.get('session-key')\n        products = []\n        for product_id, product_data in cart.items():\n            products.append(product_data)\n        context = {'products': products}\n        return render(request, self.template_name, context)\n    def post(self, request, *args, **kwargs):",
         "detail": "commerce.products.views",
         "documentation": {}
     },
@@ -921,7 +1029,7 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class TestimonialView(View):\n    template_name = \"products/testimonial.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'  # Le nom de la variable passée au template\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()[:9]",
+        "peekOfCode": "class TestimonialView(View):\n    template_name = \"products/testimonial.html\"\n    def get(self, request, *args, **kwargs):\n        return render(request, self.template_name)\nclass ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()[:9]",
         "detail": "commerce.products.views",
         "documentation": {}
     },
@@ -930,7 +1038,7 @@
         "kind": 6,
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
-        "peekOfCode": "class ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'  # Le nom de la variable passée au template\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()[:9]\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        # Ajouter la liste de catégories au contexte\n        context['categories'] = Category.objects.all()",
+        "peekOfCode": "class ProductListView(ListView):\n    template_name = \"products/list_product.html\"\n    context_object_name = 'products'\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.all()[:9]\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        # Ajouter la liste de catégories au contexte\n        context['categories'] = Category.objects.all()",
         "detail": "commerce.products.views",
         "documentation": {}
     },
@@ -940,6 +1048,15 @@
         "importPath": "commerce.products.views",
         "description": "commerce.products.views",
         "peekOfCode": "class ProductDetailView(DetailView):\n    template_name = \"products/detail_product.html\"\n    context_object_name = 'product'\n    def get_queryset(self):\n        # Récupérer tous les produits\n        return Product.objects.filter(pk=self.kwargs['pk'])\n    def get_context_data(self, **kwargs):\n        context = super().get_context_data(**kwargs)\n        # Ajouter la liste de catégories au contexte\n        context['categories'] = Category.objects.all()",
+        "detail": "commerce.products.views",
+        "documentation": {}
+    },
+    {
+        "label": "SearchProductView",
+        "kind": 6,
+        "importPath": "commerce.products.views",
+        "description": "commerce.products.views",
+        "peekOfCode": "class SearchProductView(ListView):\n    def post(self, request, *args, **kwargs):\n        \"\"\"\n        This function is used to handle POST requests to the search view.\n        Parameters:\n            request (HttpRequest): The incoming request.\n        Returns:\n            HttpResponse: The response to the request.\n        \"\"\"\n        # Retrieve the search term",
         "detail": "commerce.products.views",
         "documentation": {}
     },

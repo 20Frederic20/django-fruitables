@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.template.defaultfilters import slugify
 
 # Create your models here.
@@ -34,13 +35,16 @@ class Product(models.Model):
     name = models.CharField(max_length=255)
     price = models.FloatField(max_length=10, null=True, blank=True)
     description = models.TextField(blank=True, null=True)
-    image = models.ImageField(upload_to="tmp/", blank=True, null=True)
+    image = models.ImageField(upload_to="images/", blank=True, null=True)
     type = models.CharField(
         max_length=255, choices=TypeProduct, blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("products-show", kwargs={"pk": self.pk})
 
     class Meta:
         ordering = ["name"]

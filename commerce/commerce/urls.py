@@ -18,7 +18,9 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from products.views import IndexView, ProductListView, ProductDetailView, ContactView, Error404View, CartView, TestimonialView, CheckoutView
+from products.views import IndexView, ProductListView, ProductDetailView
+from products.views import ContactView, Error404View, CartView
+from products.views import TestimonialView, CheckoutView, SearchProductView
 from categories.views import CategoryDetailView
 
 urlpatterns = [
@@ -26,6 +28,7 @@ urlpatterns = [
     path("", IndexView.as_view(), name="index"),
     path("<slug:category>", IndexView.as_view(), name="index"),
     path("contact/", ContactView.as_view(), name="contact"),
+    path("search/", SearchProductView.as_view(), name="search"),
     path("cart/", CartView.as_view(), name="cart"),
     path("checkout/", CheckoutView.as_view(), name="checkout"),
     path("testimonial/", TestimonialView.as_view(), name="testimonial"),

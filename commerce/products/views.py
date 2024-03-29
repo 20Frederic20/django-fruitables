@@ -13,7 +13,7 @@ class IndexView(View):
     context_object_name = 'products'
 
     def get(self, request, *args, **kwargs):
-        products = Product.objects.all()
+        products = Product.objects.order_by('-pk')
         categories = Category.objects.order_by('name')[:4]
         slug = request.GET.get('category')
         if slug:
@@ -37,7 +37,8 @@ class CartView(View):
         products = []
         for product_id, product_data in cart.items():
             products.append(product_data)
-        return render(request, self.template_name, context={'products': products})
+        context = {'products': products}
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         cart = Cart(request)
@@ -49,7 +50,11 @@ class CartView(View):
         new_price = cart.cart[str(product_id)]['total']
         quantity = cart.cart[str(product_id)]['quantity']
         priceHT = cart.setPriceHT()
-        return JsonResponse({'name': name, "cart_quantity": cart_quantity, "quantity": quantity, 'price': new_price, 'priceHT': priceHT})
+        response = {
+            'name': name, "cart_quantity": cart_quantity, "quantity": quantity,
+            'price': new_price, 'priceHT': priceHT
+        }
+        return JsonResponse(response)
 
     def delete(self, request, *args, **kwargs):
         # product_name = request.DELETE.get('product_id')
@@ -91,7 +96,7 @@ class TestimonialView(View):
 
 class ProductListView(ListView):
     template_name = "products/list_product.html"
-    context_object_name = 'products'  # Le nom de la variable passée au template
+    context_object_name = 'products'
 
     def get_queryset(self):
         # Récupérer tous les produits
@@ -119,3 +124,25 @@ class ProductDetailView(DetailView):
         # Ajouter la liste de catégories au contexte
         context['categories'] = Category.objects.all()
         return context
+
+
+class SearchProductView(ListView):
+    def post(self, request, *args, **kwargs):
+        """
+        This function is used to handle POST requests to the search view.
+
+        Parameters:
+            request (HttpRequest): The incoming request.
+
+        Returns:
+            HttpResponse: The response to the request.
+        """
+        # Retrieve the search term
+        search = request.POST.get('search')
+
+        # Retrieve the products that match the search term
+        product_search = Product.objects.filter(name__icontains=search)
+
+        # Render the template with the products$
+        context = {'products_search': product_search}
+        return render(request, 'products/index.html', context)
